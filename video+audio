@@ -1,0 +1,48 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class audio : MonoBehaviour
+{
+    //AudioClip
+    public AudioClip music;
+    public AudioClip se;
+
+    //播放器组件
+    public AudioSource player;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        player = GetComponent<AudioSource>();
+        //设定播放的音频片段
+        player.clip = music;
+        //循环播放
+        player.loop = true;
+        //音量
+        player.volume = 0.5f;
+        //播放
+        player.Play();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //按空格切换声音的播放和暂停
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //如果当前正在播放声音
+            if (player.isPlaying)
+                //停止播放，再开始就是从头开始player.Stop();
+                player.Pause();//暂停播放，只有按下时才暂停，松开时继续播放
+        }
+        //按鼠标左键播放声音
+        if (Input.GetMouseButtonDown(0))
+        {
+            player.PlayOneShot(se);
+        }
+    } 
+}
+-------------------------------------------------------------------
+          private VideoPlayer player;//基本用法一致
