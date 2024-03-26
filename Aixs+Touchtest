@@ -1,0 +1,74 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AxisTest : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //获取水平轴
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        Debug.Log(horizontal+" "+vertical);
+        //虚拟按键
+        if (Input.GetButtonDown("Jump"))
+        {
+            Debug.Log("空格");
+        }
+    }
+}
+-------------------------------------------------------------------------------
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TouchTest : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        //开启多点触摸
+        Input.multiTouchEnabled = true;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //单点触摸
+        if(Input.touchCount==1)
+        {
+            //触摸对象
+            Touch touch=Input.touches[0];
+            //触摸位置 
+            Debug.Log(touch.position);
+            //触摸阶段
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    break;
+                case TouchPhase.Moved:
+                    break;
+                case TouchPhase.Stationary:
+                    break;
+                case TouchPhase.Ended:
+                    break;
+                case TouchPhase.Canceled:
+                    break;
+            }
+        }
+        //多点触摸
+        if (Input.touchCount==2)
+        {
+            Touch touch = Input.touches[0];
+            Touch touch1 = Input.touches[1];
+        }
+    }
+}
+
