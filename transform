@@ -1,0 +1,51 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TransformTest : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        /*
+        //获取位置
+        Debug.Log(transform.position);
+        Debug.Log(transform.localPosition);//相对位置
+        //获取旋转
+        Debug.Log(transform.rotation);
+        Debug.Log(transform.localRotation);
+        Debug.Log(transform.eulerAngles);//欧拉角
+        Debug.Log(transform.localEulerAngles);
+        //获取缩放
+        Debug.Log(transform.localScale);
+        //获取向量
+        Debug.Log(transform.forward);
+        Debug.Log(transform.right);
+        Debug.Log(transform.up);
+        */
+
+        //父子关系
+        //获取父物体：transform.parent.gameObject
+        //子物体个数：transform.childCount
+        //解除与子物体关系transform.DetachChildren();
+        //获取子物体Transform ts=transform.Find("xxx");
+        //获取第几个子物体transform.GetChild(0);
+        //是不是子物体ts.isChild(transform);
+        //设置为父物体ts.SetParent(transform);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        /*
+        //时时刻刻都看向（0，0，0）
+        transform.LookAt(Vector3.zero);
+        //旋转
+        transform.Rotate(Vector3.up, 1);
+        //绕某个物体旋转
+        transform.RotateAround(Vector3.zero,Vector3.up,5);
+        //移动
+        transform.Translate(Vector3.forward*0.1f);
+        */
+    }
+}
