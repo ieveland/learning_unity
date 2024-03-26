@@ -1,0 +1,48 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class KeyTest : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //鼠标的点击
+        //按下鼠标
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("按下了鼠标左键");
+        }
+        //持续按下鼠标
+        if (Input.GetMouseButton(0))
+        {
+            Debug.Log("持续按下了鼠标左键");
+        }
+        //抬起鼠标
+        if (Input.GetMouseButtonUp(0))
+        {
+            Debug.Log("提起了鼠标左键");
+        }
+        //按下键盘
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Debug.Log("按下了A键");
+        }
+        //持续按下键盘
+        if (Input.GetKey(KeyCode.A))
+        {
+            Debug.Log("持续按下了A键");
+        }
+        //抬起键盘
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            Debug.Log("提起了A键");
+        }
+    }
+}
