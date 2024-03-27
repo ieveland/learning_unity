@@ -1,0 +1,78 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TimeTest : MonoBehaviour
+{
+    float timer = 0;
+    // Start is called before the first frame update
+    void Start()
+    {
+        //游戏开始到现在所花时间
+        Debug.Log(Time.time);
+        //时间缩放值
+        Debug.Log(Time.timeScale);
+        //固定时间间隔
+        Debug.Log(Time.fixedDeltaTime);
+       
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        timer = timer + Time.deltaTime;
+        //上一帧到这一帧所用时间
+        Debug.Log(Time.deltaTime);
+        if (timer > 3)
+        {
+            Debug.Log("超过3喵了");
+        }
+    }
+}
+------------------------------------------------------
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TouchTest : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        //开启多点触摸
+        Input.multiTouchEnabled = true;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //单点触摸
+        if(Input.touchCount==1)
+        {
+            //触摸对象
+            Touch touch=Input.touches[0];
+            //触摸位置 
+            Debug.Log(touch.position);
+            //触摸阶段
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    break;
+                case TouchPhase.Moved:
+                    break;
+                case TouchPhase.Stationary:
+                    break;
+                case TouchPhase.Ended:
+                    break;
+                case TouchPhase.Canceled:
+                    break;
+            }
+        }
+        //多点触摸
+        if (Input.touchCount==2)
+        {
+            Touch touch = Input.touches[0];
+            Touch touch1 = Input.touches[1];
+        }
+    }
+}
