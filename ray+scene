@@ -1,0 +1,76 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class RayTest : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        //创建射线方式1：点+向量
+        //Ray ray = new Ray(Vector3.zero,Vector3.up);
+        //方式2：摄像机定点
+        //ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //按下鼠标时发射射线
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //只有有碰撞组件存在时才行，故先声明一个碰撞信息类
+            RaycastHit hit;
+            //碰撞检测
+            bool res = Physics.Raycast(ray, out hit);
+            //如果碰撞到则out hit会填充hit的内容
+            if (res == true)
+            {
+                Debug.Log(hit.point);
+                transform.position = hit.point;
+            }
+            //多个物体检测，返回的是数组，可设置碰撞距离以及图层(ray,100,1<<10)距离100第十图层
+            RaycastHit[] hits = Physics.RaycastAll(ray);
+        }
+    }
+}
+-------------------------------------------------------------------------------------------
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class SceneTest : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        //两个类，场景类，场景管理类
+        //可以通过名称MyScene，也可以通过序号
+        SceneManager.LoadScene(0);//同步加载
+        //获取当前场景
+        Scene scene = SceneManager.GetActiveScene();
+        Debug.Log(scene.name);
+        //场景是否被加载isLoaded;路径path；场景索引buildIndex
+        //得到所有根游戏物体
+        GameObject[]gos=scene.GetRootGameObjects();
+        Debug.Log(gos.Length);
+
+        //场景管理类
+        Debug.Log(SceneManager.sceneCount);
+        //创建新场景
+        Scene newScene=SceneManager.CreateScene("newScene");
+        //卸载场景
+        SceneManager.UnloadSceneAsync(newScene);
+        //加载场景
+        //SceneManager.LoadScene("MyScene",LoadSceneMode.additive是融合添加);single是覆盖
+        //异步加载
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
