@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class fireTest : MonoBehaviour
+{
+    //创建爆炸预设体,记得加入脚本
+    public GameObject Prefab;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    //监听发生碰撞
+    private void OnCollisionEnter(Collision collision)
+    {
+        //创建一个爆炸物体
+        Instantiate(Prefab,transform.position,Quaternion.identity);
+        //销毁自身
+        Destroy(gameObject);
+        //获取碰撞到的物体
+        Debug.Log(collision.gameObject.name);
+    }
+    //持续碰撞中
+    private void OnCollisionStay(Collision collision)
+    {
+        
+    }
+    //结束碰撞
+    private void OnCollisionExit(Collision collision)
+    {
+
+    }
+}
