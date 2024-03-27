@@ -1,0 +1,64 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ApplicationTest : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        //游戏数据文件夹路径，后面可+"/新建文本文档.txt"
+        //只读，加密
+        Debug.Log(Application.dataPath);
+        //持久化文件夹路径
+        Debug.Log(Application.persistentDataPath);
+        //StreamingAssetsPath，一个需要手动添加的文件夹，这里面的文件只读但不加密
+        //临时文件夹
+        Debug.Log(Application.temporaryCachePath);
+        //控制是否在后台运行
+        Debug.Log(Application.runInBackground);
+        //打开url
+        Application.OpenURL("https://www.baidu.com/");
+        //退出游戏
+        Application.Quit();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
+-----------------------------------------------------------------------
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class AsyncTest : MonoBehaviour
+{
+    AsyncOperation operation;
+    // Start is called before the first frame update
+    void Start()
+    {
+        StartCoroutine(loadScene());
+    }//loadScene是同步加载
+    //协程方法用来异步加载场景
+    IEnumerator loadScene()
+    {
+        operation = SceneManager.LoadSceneAsync(0);
+        //加载完不自动跳转
+        operation.allowSceneActivation = false;
+        yield return operation;
+    }
+    float timer = 0;
+    // Update is called once per frame
+    void Update()
+    {
+        //输出加载进度
+        Debug.Log(operation.progress);
+        timer += Time.deltaTime;
+        if (timer > 5)
+            operation.allowSceneActivation = true;
+    }
+}
