@@ -54,3 +54,26 @@ public class a_control : MonoBehaviour
      * }
      */
 }
+----------------------------------------------------------------------------------
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Animation : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            //GetComponent<Animation>().Play("right");
+            //报错原因：要确保该对象上有Animation组件；名为"right"的动画已经创建并添加到了Animation组件中。
+        }
+    }
+}
