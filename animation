@@ -1,0 +1,56 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class a_control : MonoBehaviour
+{
+    //反向动力学public Transform target;这里放的是中心，要挂IK处理
+    //private Animator animator;
+    // Start is called before the first frame update
+    void Start()
+    {
+        //animator=GetComponent<Animator>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        Vector3 dir = new Vector3(horizontal, 0, vertical);
+        transform.rotation = Quaternion.LookRotation(dir);
+        if (dir != Vector3.zero)
+        {
+            //当用户按下某个键，就面向向量运动
+            transform.rotation = Quaternion.LookRotation(dir);
+            //播放跑步动画
+            //animator.SetBool("isRun",true);isrun是自己设置的转换条件
+            //朝向前方移动，每秒向这个方向移动2米
+            transform.Translate(Vector3.forward*2*Time.deltaTime);
+        }//else播放站立动画true-->false
+        //曲线-->可以理解为根据曲线改变某个参数使得动画变化
+        //随时获取Test参数并打印出来,test是曲线
+        //Debug.Log(animator.GetFloat("Test"));
+    }
+    /*取动画部分设为事件，给函数命名
+     * 只要脚本含有函数就可调用该事件，命名记得匹配
+     * 因此可以对每个脚落地的情况设定不同的效果等等等
+     * void leftFoot(){
+     *  
+     * }
+     * void rightFoot(){
+     * 
+     * }
+     * IK相关全写到方法内
+     * private void OnAnimatorIK(int layerIndex){
+     *  animator.SetLookAtWeight(1);权重为1
+     *  animator.SetLookAtPosition(target.position);头部
+     *  animator.SetIKPositionWeight(AvatarIKGoal.RightHand,1);右手位置权重
+     *  animator.SetIKRotationWeight(AvatarIKGoal.RightHand,1);右手旋转权重
+     *  设置IK
+     *  animator.SetIKPosition(AvatarIKGoal.RightHand,target.position);
+     *  animator.SetIKRotation(AvatarIKGoal.RightHand,target.rotation);旋转要用4元数
+     *  
+     * }
+     */
+}
