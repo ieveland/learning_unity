@@ -1,0 +1,87 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+public class p_control : MonoBehaviour
+{
+    private NavMeshAgent agent;
+    // Start is called before the first frame update
+    void Start()
+    {
+        //获取代理组件
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            //获取点击位置
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if(Physics.Raycast(ray,out hit))
+            {
+                //点击位置
+                Vector3 point = hit.point;
+                //设置该位置为导航目标点
+                agent.SetDestination(point);
+            }
+        }
+    }
+}
+-------------------------------------------------------------------------------
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+public class Text : MonoBehaviour
+{
+    public InputField inputField;
+    public TMP_InputField newInputField;//新版
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    public void ButtonClick()
+    {
+        Debug.Log("Click");
+    }
+    public void TextChange()
+    {
+        Debug.Log(inputField.text);
+    }
+}
+---------------------------------------------------------------
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+public class dropdown : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        //获取下拉组件
+        Dropdown dropdown = GetComponent<Dropdown>();
+        //获取组件选项
+        List<Dropdown.OptionData> options = dropdown.options;
+        //修改选项
+        options.Add(new Dropdown.OptionData("俄罗斯"));
+        dropdown.options = options;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
